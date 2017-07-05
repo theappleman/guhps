@@ -1,0 +1,41 @@
+---
+- set_fact:
+    snapshot_filename: portage-{{ date | mandatory }}.tar.bz2
+
+- stat:
+    path: /var/tmp/portage/{{ snapshot_filename }}
+  register: portage_snapshot
+
+- block:
+  - get_url:
+      url: http://dev.gentoo.org/~swift/snapshots/{{ snapshot_filename }}
+      dest: /var/tmp/portage/{{ snapshot_filename }}
+
+  - file:
+      path: /usr/portage
+      state: absent
+
+  - unarchive:
+      remote_src: True
+      src: /var/tmp/portage/{{ snapshot_filename }}
+      dest: /usr
+  when: portage_snapshot.stat.exists == False
+
+
+- portage:
+    package: portage
+    oneshot: yes
+    update: yes
+
+- portage:
+    package: gcc
+    oneshot: yes
+    update: yes
+  register: gcc
+
+- portage:
+    package: "@system"
+    deep: yes
+    update: yes
+
+- shell: '(qlist -IC "virtual/perl-*"; qlist -IC "dev-perl/*") | xargs emerge -1 dev-lang/perl texinfo'

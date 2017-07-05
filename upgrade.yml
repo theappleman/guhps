@@ -1,0 +1,12 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: "{{ hosts | default('localhost') }}"
+  roles:
+  - firstboot
+  - { role: upgrade, date: 20160520 }
+  - { role: upgrade, date: 20160720 }
+  - { role: upgrade, date: 20160920 }
+  - { role: upgrade, date: 20161120 }
+  - { role: upgrade, date: 20170120 }
+  - { role: upgrade, date: 20170320 }
+  - { role: upgrade, date: 20170520 }
