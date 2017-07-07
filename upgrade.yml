@@ -3,6 +3,7 @@
 - hosts: "{{ hosts | default('localhost') }}"
   roles:
   - firstboot
+  - upgrade
   - { role: upgrade, date: 20160520 }
   - { role: upgrade, date: 20160720 }
   - { role: upgrade, date: 20160920 }

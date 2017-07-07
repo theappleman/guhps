@@ -1,6 +1,6 @@
 ---
 - set_fact:
-    snapshot_filename: portage-{{ date | mandatory }}.tar.bz2
+    snapshot_filename: portage-{{ date | default('latest') }}.tar.bz2
 
 - stat:
     path: /var/tmp/portage/{{ snapshot_filename }}
@@ -19,7 +19,7 @@
       remote_src: True
       src: /var/tmp/portage/{{ snapshot_filename }}
       dest: /usr
-  when: portage_snapshot.stat.exists == False
+  when: "{{ date | default(False) }} and portage_snapshot.stat.exists == False"
 
 
 - block:
