@@ -22,10 +22,12 @@
   when: portage_snapshot.stat.exists == False
 
 
-- portage:
-    package: portage
-    oneshot: yes
-    update: yes
+- block:
+  - portage:
+      package: portage
+      oneshot: yes
+  rescue:
+  - shell: emerge -1 portage
 
 - portage:
     package: gcc
