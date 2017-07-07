@@ -1,0 +1,9 @@
+---
+
+- block:
+  - portage:
+      package: portage
+      oneshot: yes
+  rescue:
+  - shell: emerge -1 portage
+

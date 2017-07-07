@@ -21,13 +21,7 @@
       dest: /usr
   when: "{{ date | default(False) }} and portage_snapshot.stat.exists == False"
 
-
-- block:
-  - portage:
-      package: portage
-      oneshot: yes
-  rescue:
-  - shell: emerge -1 portage
+- include: portage.yml
 
 - portage:
     package: gcc
