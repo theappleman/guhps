@@ -16,6 +16,7 @@
     - { url: 'https://dev.gentoo.org/~vapier/dist/gnuconfig-20150727.tar.bz2', dest: 'gnuconfig-20150727.tar.bz2', checksum: 'fbf17e403d1ad373cad2beced5f8bcde57168c58' }
     - { url: 'https://dev.gentoo.org/~vapier/dist/gnuconfig-20151214.tar.bz2', dest: 'gnuconfig-20151214.tar.bz2', checksum: '2b1fc11a270040aa4e43954f2aa25409d88a1cba' }
     - { url: 'https://xyinn.org/gentoo/distfiles/code2color-0.2', dest: 'code2color-0.2', checksum: 'f9deb4d14cea554b59ec979be5cb3eda35aff4dd' }
+    - { url: 'https://xyinn.org/gentoo/distfiles/ca-certificates_20151214.tar.xz', dest: 'ca-certificates_20151214.tar.xz', checksum: 'c993a9a44cf2bf2d7282699fd0415f2b5d52fa00' }
     - { url: 'https://bbgentoo.ilb.ru/distfiles/openssh-7.2_p1-sctp.patch.xz', dest: 'openssh-7.2_p1-sctp.patch.xz', checksum: 'ec1bc931fc694cd8d00ab7ad9a78370946655d81' }
     - { url: 'https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_21_RTM/src/nss-3.21.tar.gz', dest: 'nss-3.21.tar.gz', checksum: 'd4bbbd72b967443e8b65f504cdd157e3df93a84a' }
     - { url: 'https://ftp.openssl.org/source/old/1.0.2/openssl-1.0.2g.tar.gz', dest: 'openssl-1.0.2g.tar.gz', checksum: '36af23887402a5ea4ebef91df8e61654906f58f2' }
