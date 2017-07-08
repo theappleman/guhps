@@ -29,6 +29,9 @@
     update: yes
   register: gcc
 
+- include: gcc.yml
+  when: gcc|changed
+
 - portage:
     package: "@system"
     deep: yes

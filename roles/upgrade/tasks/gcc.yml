@@ -1,0 +1,21 @@
+---
+- shell: portageq envvar CHOST
+  register: pqCHOST
+  changed_when: False
+
+- set_fact:
+    CHOST: "{{ pqCHOST.stdout }}"
+
+- find:
+    path: /etc/env.d/gcc
+    pattern: "{{ CHOST }}*"
+  register: native_gcc
+
+- shell: "gcc-config {{ native_gcc.files[-1].path | basename }}"
+
+- block:
+  - portage:
+      package: libtool
+      oneshot: yes
+  rescue:
+  - shell: emerge -1 libtool
