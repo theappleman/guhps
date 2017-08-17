@@ -38,3 +38,4 @@
     update: yes
 
 - shell: '(qlist -IC "virtual/perl*"; qlist -IC "dev-perl/*") | xargs emerge -1 dev-lang/perl texinfo'
+  when: "{{ date | default(False) }} and portage_snapshot.stat.exists == False"
