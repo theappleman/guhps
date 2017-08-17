@@ -37,4 +37,4 @@
     deep: yes
     update: yes
 
-- shell: '(qlist -IC "virtual/perl-*"; qlist -IC "dev-perl/*") | xargs emerge -1 dev-lang/perl texinfo'
+- shell: '(qlist -IC "virtual/perl*"; qlist -IC "dev-perl/*") | xargs emerge -1 dev-lang/perl texinfo'
