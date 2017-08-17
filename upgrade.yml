@@ -1,7 +1,6 @@
 #!/usr/bin/env ansible-playbook
 ---
 - hosts: "{{ hosts | default('localhost') }}"
-  any_errors_fatal: True
   roles:
   - firstboot
   - upgrade
