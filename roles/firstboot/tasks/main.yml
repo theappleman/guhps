@@ -1,5 +1,5 @@
 ---
-- copy:
+- template:
     src: make.conf
     dest: /etc/portage/make.conf
 
