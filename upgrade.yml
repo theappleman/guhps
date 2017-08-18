@@ -11,3 +11,4 @@
   - { role: upgrade, date: 20170120 }
   - { role: upgrade, date: 20170320 }
   - { role: upgrade, date: 20170520 }
+  - { role: upgrade, date: 20170720 }
