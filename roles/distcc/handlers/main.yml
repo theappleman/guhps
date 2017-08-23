@@ -1,0 +1,8 @@
+- name: restart distccd
+  service:
+    name: distccd
+    state: restarted
+  when: ansible_service_mgr != "openrc"
+- name: restart distccd
+  shell: rc-service distccd restart
+  when: ansible_service_mgr == "openrc"

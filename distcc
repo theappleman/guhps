@@ -1,0 +1,7 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: "{{ hosts | default('all') }}"
+  strategy: "{{ strategy | default('linear') }}"
+  roles:
+  - firstboot
+  - distcc

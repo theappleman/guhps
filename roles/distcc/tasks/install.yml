@@ -1,0 +1,10 @@
+---
+- block:
+  - name: install distcc
+    portage: package=distcc
+  rescue:
+  - meta: clear_host_errors
+  - shell: emerge -u1 portage
+  - shell: emerge -u distcc
+  always:
+  - debug: var=ansible_play_hosts

@@ -1,0 +1,10 @@
+  - name: reload systemd
+    shell: systemctl daemon-reload
+    when: ansible_service_mgr == "systemd"
+  # If we run this early we may need to configure OpenRC
+  - name: distcc openrc
+    lineinfile:
+      dest: /etc/conf.d/distccd
+      line: 'DISTCCD_OPTS="${DISTCCD_OPTS} --allow {{ item }}"'
+    with_items: "{{ networks | unique }}"
+    when: ansible_service_mgr == "sysvinit"

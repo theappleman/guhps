@@ -1,0 +1,3 @@
+{% for host in host_addresses | ipv4 | unique %}
+{{ host | ipaddr('address') | ipwrap }},cpp,lzo
+{% endfor %}

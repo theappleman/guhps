@@ -1,0 +1,11 @@
+
+- name: host addrs 1
+  set_fact:
+    host_addresses: "[{% for host in ansible_play_hosts %}
+      '{{ hostvars[host].ansible_default_ipv4.address }}/{{ hostvars[host].ansible_default_ipv4.netmask }}',
+      {% endfor %}]"
+- name: host addrs 2
+  set_fact:
+    networks: "[{% for network in host_addresses|ipaddr('host/prefix') %}
+      '{{ network|ipaddr('network') ~ '/' ~ network|ipaddr('prefix') }}',
+      {% endfor %}]"

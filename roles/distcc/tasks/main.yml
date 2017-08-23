@@ -1,0 +1,62 @@
+---
+- include: install.yml
+
+- include: host-addresses.yml
+
+- name: prepare allowed servers
+  template:
+    src:  distccd.service.conf
+    dest: /etc/systemd/system/distccd.service.d/00gentoo.conf
+
+# Split out due to ansible/ansible#20736
+- include: allow.yml
+
+- name: start distccd
+  service:
+    state: started
+    enabled: yes
+    name: distccd
+  when: ansible_service_mgr == "sysvinit"
+
+- name: start distccd
+  shell: rc-service distccd start
+  register: rc_service
+  changed_when: '"Starting" in rc_service.stdout'
+  when: ansible_service_mgr == "openrc"
+
+- name: wait for distcc port
+  wait_for:
+    port: 3632
+    timeout: 3
+
+# Update the list of addresses based on
+# hosts with distccd running
+- include: host-addresses.yml
+
+- name: prepare hosts
+  template:
+    src:  hosts
+    dest: /etc/distcc/hosts
+  notify: restart distccd
+
+- name: enable distcc portage feature
+  lineinfile:
+    line: "{{ item }}"
+    dest: /etc/portage/make.conf
+  environment:
+    TMPDIR: /etc/portage
+  with_items:
+  - 'FEATURES="$FEATURES distcc distcc-pump"'
+  - 'MAKEOPTS="-l4 -j6"'
+
+- name: update compiler masquerade
+  shell: distcc-config --update-masquerade-with-crossdev
+
+# allow other ansible plays to enable distcc without depending on this role
+- name: create directory for ansible custom facts
+  file: state=directory recurse=yes path=/etc/ansible/facts.d
+- name: install distcc fact
+  copy: src=distcc.fact dest=/etc/ansible/facts.d
+
+- name: refresh facts
+  meta: clear_facts
