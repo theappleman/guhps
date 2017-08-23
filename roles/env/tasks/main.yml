@@ -1,0 +1,13 @@
+- file:
+    dest: /etc/portage/env
+    state: directory
+
+- copy:
+    src: "{{ item }}"
+    dest: /etc/portage/env/
+  with_fileglob:
+  - "env/*"
+
+- copy:
+    src: package.env
+    dest: /etc/portage/package.env

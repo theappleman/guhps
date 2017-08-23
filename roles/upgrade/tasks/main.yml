@@ -21,6 +21,10 @@
       dest: /usr
   when: "{{ date | default(False) }} and portage_snapshot.stat.exists == False"
 
+- file:
+    path: /var/lib/portage/tmp
+    state: directory
+
 - include: portage.yml
 
 - portage:

@@ -1,0 +1,2 @@
+CFLAGS="$CFLAGS --param ggc-min-expand=0 --param ggc-min-heapsize=4096 -fno-inline"
+CXXFLAGS="$CFLAGS"
