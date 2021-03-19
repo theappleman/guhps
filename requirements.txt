@@ -6,7 +6,7 @@ cffi==1.10.0
 chardet==3.0.4
 cryptography==1.9
 idna==2.5
-Jinja2==2.8.1
+Jinja2==2.11.3
 MarkupSafe==1.0
 ndg-httpsclient==0.4.2
 paramiko==2.2.1
