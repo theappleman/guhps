@@ -15,7 +15,7 @@ pycparser==2.17
 pycrypto==2.6.1
 PyNaCl==1.1.2
 pyOpenSSL==17.1.0
-PyYAML==3.12
+PyYAML==5.4
 requests==2.18.1
 scaleway-sdk==1.5.0
 six==1.10.0
