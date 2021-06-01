@@ -20,4 +20,4 @@ requests==2.18.1
 scaleway-sdk==1.5.0
 six==1.10.0
 slumber==0.7.1
-urllib3==1.21.1
+urllib3==1.26.5
